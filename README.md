@@ -25,7 +25,16 @@ denotes the figure that will be produced using these data.
 
 The codes to produce these figures are in Python. The Python
 environment can be build using
-[requirements.txt](https://github.com/julemai/calibration-strategies/requirements.txt).
+[requirements.txt](https://github.com/julemai/calibration-strategies/requirements.txt) or setup a Python environment manually using:
+
+```
+pip install argparse
+pip install numpy
+pip install scipy
+pip install matplotlib
+pip install lhsmdu
+
+```
 
 
 ## Generate figures
