@@ -28,12 +28,14 @@ environment can be build using
 [requirements.txt](https://github.com/julemai/calibration-strategies/requirements.txt) or setup a Python environment manually using:
 
 ```
+pyenv virtualenv 3.8.5 env-3.8.5-calib-pub
+pyenv activate env-3.8.5-calib-pub
+
 pip install argparse
 pip install numpy
 pip install scipy
 pip install matplotlib
 pip install lhsmdu
-
 ```
 
 
