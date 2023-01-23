@@ -2,6 +2,10 @@
 
 This repository contains the data and scripts associated with the publication on "Ten strategies towards successful calibration of environmental models".
 
+<p align="center">
+   <img alt="The calibration life cycle" src="https://github.com/julemai/nrcan-hfe/blob/main/figures/figure_1.pdf" width="65%" />
+</p>
+
 ## Requirements
 Figures 1, 5, and 11 are flowcharts and schematic overviews. They are
 derived using LaTeX. It requires LaTeX to be installed including
