@@ -144,7 +144,7 @@ if __name__ == '__main__':
     # fix seed for reproducible results
     np.random.seed(seed=123)
 
-    jsonfile = 'figure_3.json'
+    jsonfile = dir_path+'/figure_3.json'
 
     # -------------------------------------------------------------------------
     # general
@@ -282,60 +282,26 @@ if __name__ == '__main__':
         from matplotlib.backends.backend_pdf import PdfPages
         # Customize: http://matplotlib.sourceforge.net/users/customizing.html
         mpl.rc('ps', papersize='a4', usedistiller='xpdf') # ps2pdf
-        # mpl.rc('figure', figsize=(8.27,11.69)) # a4 portrait
-        mpl.rc('figure', figsize=(7.48,9.06)) # WRR maximal figure size
+        mpl.rc('figure', figsize=(10.97,11.69)) # a4 portrait
         if usetex:
             mpl.rc('text', usetex=True)
-            if not serif:
-                #   r'\usepackage{helvet}',                             # use Helvetica
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage[math,lf,mathtabular,footnotefigures]{MyriadPro}', # use MyriadPro font
-                    r'\renewcommand{\familydefault}{\sfdefault}',       # normal text font is sans serif
-                    r'\figureversion{lining,tabular}',
-                    r'\usepackage{wasysym}',                            # for permil symbol (load after MyriadPro)
-                    ]
-            else:
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage{wasysym}'                     # for permil symbol
-                    ]
         else:
-            if serif:
-                mpl.rcParams['font.family']     = 'serif'
-                mpl.rcParams['font.sans-serif'] = 'Times'
-            else:
-                mpl.rcParams['font.family']     = 'sans-serif'
-                mpl.rcParams['font.sans-serif'] = 'Arial'       # Arial, Verdana
-    elif (outtype == 'png') or (outtype == 'html') or (outtype == 'd3'):
+            #mpl.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+            mpl.rc('font',**{'family':'serif','serif':['times']})
+        mpl.rc('text.latex') #, unicode=True)
+    elif (outtype == 'png'):
         mpl.use('Agg') # set directly after import matplotlib
         import matplotlib.pyplot as plt
-        # mpl.rc('figure', figsize=(8.27,11.69)) # a4 portrait
-        mpl.rc('figure', figsize=(7.48,9.06)) # WRR maximal figure size
+        mpl.rc('figure', figsize=(10.97,11.69)) # a4 portrait
         if usetex:
             mpl.rc('text', usetex=True)
-            if not serif:
-                #   r'\usepackage{helvet}',                             # use Helvetica
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage[math,lf,mathtabular,footnotefigures]{MyriadPro}', # use MyriadPro font
-                    r'\renewcommand{\familydefault}{\sfdefault}',       # normal text font is sans serif
-                    r'\figureversion{lining,tabular}',
-                    r'\usepackage{wasysym}',                            # for permil symbol (load after MyriadPro)
-                    ]
-            else:
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage{wasysym}'                     # for permil symbol
-                    ]
         else:
-            if serif:
-                mpl.rcParams['font.family']     = 'serif'
-                mpl.rcParams['font.sans-serif'] = 'Times'
-            else:
-                mpl.rcParams['font.family']     = 'sans-serif'
-                mpl.rcParams['font.sans-serif'] = 'Arial'       # Arial, Verdana
+            #mpl.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+            mpl.rc('font',**{'family':'serif','serif':['times']})
+        mpl.rc('text.latex') #, unicode=True)
         mpl.rc('savefig', dpi=dpi, format='png')
     else:
         import matplotlib.pyplot as plt
-        # mpl.rc('figure', figsize=(4./5.*8.27,4./5.*11.69)) # a4 portrait
-        mpl.rc('figure', figsize=(7.48,9.06)) # WRR maximal figure size
     mpl.rc('text.latex') #, unicode=True)
     mpl.rc('font', size=textsize)
     mpl.rc('path', simplify=False) # do not remove
@@ -449,7 +415,7 @@ if __name__ == '__main__':
     yvals = list(np.array(dict_results['a_le_b']['naiive'])[idx,1])
     sub.hist2d(xvals, yvals, bins=[int((np.max(xvals)-np.min(xvals))/(dx*0.5)),int((np.max(yvals)-np.min(yvals))/dx)], norm=norm1, cmap=cmap_gray)
 
-    sub.text(0.5,1.06, 'Accept-Reject Method', #'Na\u00efve approach',
+    sub.text(0.5,1.06, str2tex('Accept-Reject Method', usetex=usetex), #'Na\u00efve approach',
                  fontsize=textsize+2,
                  transform=sub.transAxes, horizontalalignment='center', verticalalignment='bottom')
     sub.text(-0.5,0.5, str2tex('$x_1 < x_2$', usetex=usetex),
@@ -469,8 +435,8 @@ if __name__ == '__main__':
     sub.set_yticks(yticks)
     #sub.set_xticklabels([str2tex('$x_{1,L}='+astr(xticks[0],prec=0)+'$',usetex=usetex),astr(xticks[1],prec=0),'$x_{1,U}='+astr(xticks[2],prec=0)+'$'])
     #sub.set_yticklabels([str2tex('$x_{2,L}='+astr(yticks[0],prec=0)+'$',usetex=usetex),astr(yticks[1],prec=0),'$x_{2,U}='+astr(yticks[2],prec=0)+'$'])
-    sub.set_xticklabels([str2tex(astr(xticks[0],prec=0),usetex=usetex),astr(xticks[1],prec=0),astr(xticks[2],prec=0)])
-    sub.set_yticklabels([str2tex(astr(yticks[0],prec=0),usetex=usetex),astr(yticks[1],prec=0),astr(yticks[2],prec=0)])
+    sub.set_xticklabels([str2tex(astr(xticks[0],prec=0),usetex=usetex),str2tex(astr(xticks[1],prec=0),usetex=usetex),str2tex(astr(xticks[2],prec=0),usetex=usetex)])
+    sub.set_yticklabels([str2tex(astr(yticks[0],prec=0),usetex=usetex),str2tex(astr(yticks[1],prec=0),usetex=usetex),str2tex(astr(yticks[2],prec=0),usetex=usetex)])
 
     # abc
     sub.text( 1.05, 1.0, str2tex(chr(96+iplot),usetex=usetex),
@@ -511,7 +477,7 @@ if __name__ == '__main__':
     sub.set_yticks(yticks)
     #sub.set_xticklabels([str2tex('$x_{1,L}='+astr(xticks[0],prec=0)+'$',usetex=usetex),astr(xticks[1],prec=0),'$x_{1,U}='+astr(xticks[2],prec=0)+'$'])
     #sub.set_yticklabels([str2tex('$x_{2,L}='+astr(yticks[0],prec=0)+'$',usetex=usetex),astr(yticks[1],prec=0),'$x_{2,U}='+astr(yticks[2],prec=0)+'$'])
-    sub.set_xticklabels([str2tex(astr(xticks[0],prec=0),usetex=usetex),astr(xticks[1],prec=0),astr(xticks[2],prec=0)])
+    sub.set_xticklabels([str2tex(astr(xticks[0],prec=0),usetex=usetex),str2tex(astr(xticks[1],prec=0),usetex=usetex),str2tex(astr(xticks[2],prec=0),usetex=usetex)])
 
     sub.set_yticklabels([])
 
@@ -569,18 +535,18 @@ if __name__ == '__main__':
     if inorm == 'log':
         ticks = [ 10.0**(np.log10(min_sti) + ii*(np.log10(max_sti) - np.log10(min_sti))/len(cc)) for ii in range(len(cc)+1) ]
         cbar = mpl.colorbar.ColorbarBase(csub, norm=norm, cmap=cmap, orientation='vertical', extend='min')
-        cbar.set_ticklabels([ "{:.1e}".format(itick) if (iitick%5 ==0) else "" for iitick,itick in enumerate(ticks) ])  # print only every fifth label
+        cbar.set_ticklabels([ "${:.1e}$".format(itick) if (iitick%5 ==0) else "" for iitick,itick in enumerate(ticks) ])  # print only every fifth label
         cbar.set_label(str2tex("Density [-]",usetex=usetex))
     elif inorm == 'pow':
         ticks = [0]+[ 10**ii for ii in np.arange(0,5,1) ]  # [0, 1, 10, 100, 1000, 10000]
         ticks = [0, 1, 10, 100, 300, 1000, 3000, 10000]
         cbar = mpl.colorbar.ColorbarBase(csub, norm=norm1, ticks=ticks, cmap=cmap, orientation='vertical', extend='max')  #
-        cbar.set_ticklabels([ "{:.0e}".format(itick) for itick in ticks ])
+        cbar.set_ticklabels([ "${:.0e}$".format(itick) for itick in ticks ])
         cbar.set_label(str2tex("Frequency [-]",usetex=usetex))
     elif inorm == 'linear':
         ticks = [0, 2,5,10,20,50]
         cbar = mpl.colorbar.ColorbarBase(csub, norm=mpl.colors.NoNorm(), ticks=ticks, cmap=cmap, orientation='vertical', extend='max')  #
-        cbar.set_ticklabels([ "{:.0e}".format(itick) for itick in ticks ])
+        cbar.set_ticklabels([ "${:.0e}$".format(itick) for itick in ticks ])
         cbar.set_label(str2tex("Frequency [-]",usetex=usetex))
     else:
         raise ValueError('Norm for colormap not known.')
@@ -624,7 +590,7 @@ if __name__ == '__main__':
         yvals = list(np.array(dict_results['a_plus_b_le_c']['naiive'])[idx,1])
         sub.hist2d(xvals, yvals, bins=[int((np.max(xvals)-np.min(xvals))/dx),int((np.max(yvals)-np.min(yvals))/dx)], norm=norm1, cmap=cmap_gray)
 
-    sub.text(0.5,1.06, 'Accept-Reject Method', #'Na\u00efve approach',
+    sub.text(0.5,1.06, str2tex('Accept-Reject Method', usetex=usetex), #'Na\u00efve approach',
                  fontsize=textsize+2,
                  transform=sub.transAxes, horizontalalignment='center', verticalalignment='bottom')
     sub.text(-0.5,0.5, str2tex('$x_1 + x_2 < c$', usetex=usetex),
@@ -644,8 +610,8 @@ if __name__ == '__main__':
     sub.set_yticks(yticks)
     #sub.set_xticklabels([str2tex('$x_{1,L}='+astr(xticks[0],prec=0)+'$',usetex=usetex),astr(xticks[1],prec=0),'$x_{1,U}='+astr(xticks[2],prec=0)+'$'])
     #sub.set_yticklabels([str2tex('$x_{2,L}='+astr(yticks[0],prec=0)+'$',usetex=usetex),astr(yticks[1],prec=0),'$x_{2,U}='+astr(yticks[2],prec=0)+'$'])
-    sub.set_xticklabels([str2tex(astr(xticks[0],prec=0),usetex=usetex),astr(xticks[1],prec=0),astr(xticks[2],prec=0)])
-    sub.set_yticklabels([str2tex(astr(yticks[0],prec=0),usetex=usetex),astr(yticks[1],prec=0),astr(yticks[2],prec=0)])
+    sub.set_xticklabels([str2tex(astr(xticks[0],prec=0),usetex=usetex),str2tex(astr(xticks[1],prec=0),usetex=usetex),str2tex(astr(xticks[2],prec=0),usetex=usetex)])
+    sub.set_yticklabels([str2tex(astr(yticks[0],prec=0),usetex=usetex),str2tex(astr(yticks[1],prec=0),usetex=usetex),str2tex(astr(yticks[2],prec=0),usetex=usetex)])
 
     # abc
     sub.text( 1.05, 1.0, str2tex(chr(96+iplot-2),usetex=usetex),
@@ -674,7 +640,7 @@ if __name__ == '__main__':
         yvals = list(np.array(dict_results['a_plus_b_le_c']['alternative'])[idx,1])
         sub.hist2d(xvals, yvals, bins=[int((np.max(xvals)-np.min(xvals))/dx),int((np.max(yvals)-np.min(yvals))/dx)], norm=norm1, cmap=cmap_gray)
 
-    sub.text(0.5,1.06, 'Pie-Share Method',
+    sub.text(0.5,1.06, str2tex('Pie-Share Method', usetex=usetex),
                  fontsize=textsize+2,
                  transform=sub.transAxes, horizontalalignment='center', verticalalignment='bottom')
 
@@ -690,8 +656,10 @@ if __name__ == '__main__':
     sub.set_yticks(yticks)
     #sub.set_xticklabels([str2tex('$x_{1,L}='+astr(xticks[0],prec=0)+'$',usetex=usetex),astr(xticks[1],prec=0),'$x_{1,U}='+astr(xticks[2],prec=0)+'$'])
     #sub.set_yticklabels([str2tex('$x_{2,L}='+astr(yticks[0],prec=0)+'$',usetex=usetex),astr(yticks[1],prec=0),'$x_{2,U}='+astr(yticks[2],prec=0)+'$'])
-    sub.set_xticklabels([str2tex(astr(xticks[0],prec=0),usetex=usetex),astr(xticks[1],prec=0),astr(xticks[2],prec=0)])
-    sub.set_yticklabels([str2tex(astr(yticks[0],prec=0),usetex=usetex),astr(yticks[1],prec=0),astr(yticks[2],prec=0)])
+    sub.set_xticklabels([str2tex(astr(xticks[0],prec=0),usetex=usetex),str2tex(astr(xticks[1],prec=0),usetex=usetex),str2tex(astr(xticks[2],prec=0),usetex=usetex)])
+    #sub.set_yticklabels([str2tex(astr(yticks[0],prec=0),usetex=usetex),str2tex(astr(yticks[1],prec=0),usetex=usetex),str2tex(astr(yticks[2],prec=0),usetex=usetex)])
+
+    sub.set_yticklabels([])
 
     # abc
     sub.text( 1.05, 1.0, str2tex(chr(96+iplot-2),usetex=usetex),
@@ -713,7 +681,7 @@ if __name__ == '__main__':
     if inorm == 'log':
         ticks = [ 10.0**(np.log10(min_sti) + ii*(np.log10(max_sti) - np.log10(min_sti))/len(cc)) for ii in range(len(cc)+1) ]
         cbar = mpl.colorbar.ColorbarBase(csub, norm=norm, cmap=cmap, orientation='vertical', extend='min')
-        cbar.set_ticklabels([ "{:.1e}".format(itick) if (iitick%5 ==0) else "" for iitick,itick in enumerate(ticks) ])  # print only every fifth label
+        cbar.set_ticklabels([ "${:.1e}$".format(itick) if (iitick%5 ==0) else "" for iitick,itick in enumerate(ticks) ])  # print only every fifth label
         cbar.set_label(str2tex("Density [-]",usetex=usetex))
     elif inorm == 'pow':
         ticks = [0]+[ 10**ii for ii in np.arange(0,5,1) ]  # [0, 1, 10, 100, 1000, 10000]
@@ -746,18 +714,18 @@ if __name__ == '__main__':
     if inorm == 'log':
         ticks = [ 10.0**(np.log10(min_sti) + ii*(np.log10(max_sti) - np.log10(min_sti))/len(cc)) for ii in range(len(cc)+1) ]
         cbar = mpl.colorbar.ColorbarBase(csub, norm=norm, cmap=cmap, orientation='vertical', extend='min')
-        cbar.set_ticklabels([ "{:.1e}".format(itick) if (iitick%5 ==0) else "" for iitick,itick in enumerate(ticks) ])  # print only every fifth label
+        cbar.set_ticklabels([ "${:.1e}$".format(itick) if (iitick%5 ==0) else "" for iitick,itick in enumerate(ticks) ])  # print only every fifth label
         cbar.set_label(str2tex("Density [-]",usetex=usetex))
     elif inorm == 'pow':
         ticks = [0]+[ 10**ii for ii in np.arange(0,5,1) ]  # [0, 1, 10, 100, 1000, 10000]
         ticks = [0, 1, 10, 100, 300, 1000, 3000, 10000]
         cbar = mpl.colorbar.ColorbarBase(csub, norm=norm1, ticks=ticks, cmap=cmap, orientation='vertical', extend='max')  #
-        cbar.set_ticklabels([ "{:.0e}".format(itick) for itick in ticks ])
+        cbar.set_ticklabels([ "${:.0e}$".format(itick) for itick in ticks ])
         cbar.set_label(str2tex("Frequency [-]",usetex=usetex))
     elif inorm == 'linear':
         ticks = [0, 2,5,10,20,50]
         cbar = mpl.colorbar.ColorbarBase(csub, norm=mpl.colors.NoNorm(), ticks=ticks, cmap=cmap, orientation='vertical', extend='max')  #
-        cbar.set_ticklabels([ "{:.0e}".format(itick) for itick in ticks ])
+        cbar.set_ticklabels([ "${:.0e}$".format(itick) for itick in ticks ])
         cbar.set_label(str2tex("Frequency [-]",usetex=usetex))
     else:
         raise ValueError('Norm for colormap not known.')

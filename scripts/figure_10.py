@@ -145,7 +145,7 @@ if __name__ == '__main__':
     # fix seed for reproducible results
     np.random.seed(seed=123)
 
-    jsonfile = 'figure_10.json'
+    jsonfile = dir_path+'/figure_10.json'
 
     # -------------------------------------------------------------------------
     # general
@@ -422,60 +422,26 @@ if __name__ == '__main__':
         from matplotlib.backends.backend_pdf import PdfPages
         # Customize: http://matplotlib.sourceforge.net/users/customizing.html
         mpl.rc('ps', papersize='a4', usedistiller='xpdf') # ps2pdf
-        # mpl.rc('figure', figsize=(8.27,11.69)) # a4 portrait
-        mpl.rc('figure', figsize=(7.48,9.06)) # WRR maximal figure size
+        mpl.rc('figure', figsize=(10.97,11.69)) # a4 portrait
         if usetex:
             mpl.rc('text', usetex=True)
-            if not serif:
-                #   r'\usepackage{helvet}',                             # use Helvetica
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage[math,lf,mathtabular,footnotefigures]{MyriadPro}', # use MyriadPro font
-                    r'\renewcommand{\familydefault}{\sfdefault}',       # normal text font is sans serif
-                    r'\figureversion{lining,tabular}',
-                    r'\usepackage{wasysym}',                            # for permil symbol (load after MyriadPro)
-                    ]
-            else:
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage{wasysym}'                     # for permil symbol
-                    ]
         else:
-            if serif:
-                mpl.rcParams['font.family']     = 'serif'
-                mpl.rcParams['font.sans-serif'] = 'Times'
-            else:
-                mpl.rcParams['font.family']     = 'sans-serif'
-                mpl.rcParams['font.sans-serif'] = 'Arial'       # Arial, Verdana
-    elif (outtype == 'png') or (outtype == 'html') or (outtype == 'd3'):
+            #mpl.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+            mpl.rc('font',**{'family':'serif','serif':['times']})
+        mpl.rc('text.latex') #, unicode=True)
+    elif (outtype == 'png'):
         mpl.use('Agg') # set directly after import matplotlib
         import matplotlib.pyplot as plt
-        # mpl.rc('figure', figsize=(8.27,11.69)) # a4 portrait
-        mpl.rc('figure', figsize=(7.48,9.06)) # WRR maximal figure size
+        mpl.rc('figure', figsize=(10.97,11.69)) # a4 portrait
         if usetex:
             mpl.rc('text', usetex=True)
-            if not serif:
-                #   r'\usepackage{helvet}',                             # use Helvetica
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage[math,lf,mathtabular,footnotefigures]{MyriadPro}', # use MyriadPro font
-                    r'\renewcommand{\familydefault}{\sfdefault}',       # normal text font is sans serif
-                    r'\figureversion{lining,tabular}',
-                    r'\usepackage{wasysym}',                            # for permil symbol (load after MyriadPro)
-                    ]
-            else:
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage{wasysym}'                     # for permil symbol
-                    ]
         else:
-            if serif:
-                mpl.rcParams['font.family']     = 'serif'
-                mpl.rcParams['font.sans-serif'] = 'Times'
-            else:
-                mpl.rcParams['font.family']     = 'sans-serif'
-                mpl.rcParams['font.sans-serif'] = 'Arial'       # Arial, Verdana
+            #mpl.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+            mpl.rc('font',**{'family':'serif','serif':['times']})
+        mpl.rc('text.latex') #, unicode=True)
         mpl.rc('savefig', dpi=dpi, format='png')
     else:
         import matplotlib.pyplot as plt
-        # mpl.rc('figure', figsize=(4./5.*8.27,4./5.*11.69)) # a4 portrait
-        mpl.rc('figure', figsize=(7.48,9.06)) # WRR maximal figure size
     mpl.rc('text.latex') #, unicode=True)
     mpl.rc('font', size=textsize)
     mpl.rc('path', simplify=False) # do not remove
@@ -694,8 +660,8 @@ if __name__ == '__main__':
             # axis labels
             if ialgo == 'padds':
                 if usetex:
-                    sub.set_xlabel('Obj. \#1: '+imetric_str[0])
-                    sub.set_ylabel('Obj. \#2: '+imetric_str[1])
+                    sub.set_xlabel(str2tex('Obj. #1: '+imetric_str[0], usetex=usetex))
+                    sub.set_ylabel(str2tex('Obj. #2: '+imetric_str[1], usetex=usetex))
                 else:
                     sub.set_xlabel(str2tex('Obj. #1: '+imetric_str[0], usetex=usetex))
                     sub.set_ylabel(str2tex('Obj. #2: '+imetric_str[1], usetex=usetex))
@@ -716,8 +682,8 @@ if __name__ == '__main__':
         # captions above legend
         if iplot == 2:
             ylegcap = -0.4
-            xlegcap = -1.5   # touch this number inly with -u activated
-            dxlegcap = 1.03   # touch this number inly with -u activated
+            xlegcap = -1.2   # touch this number inly with -u activated
+            dxlegcap = 0.845   # touch this number inly with -u activated
 
             sub.text( xlegcap+0*dxlegcap, ylegcap, str2tex('Single-Objective Calibration:\n[Obj. #1]',usetex=usetex),
                                     ha = 'left', va = 'top',
@@ -740,8 +706,8 @@ if __name__ == '__main__':
         if iplot == 2:
             ll = sub.legend(frameon=frameon, ncol=4,
                                 labelspacing=llrspace, handletextpad=llhtextpad, handlelength=llhlength,
-                                columnspacing=5.0,    # touch this number inly with -u activated
-                                loc='upper center', bbox_to_anchor=(xlegcap+1.99,ylegcap-0.12), scatterpoints=1, numpoints=1,
+                                columnspacing=6.8,    # touch this number inly with -u activated
+                                loc='upper center', bbox_to_anchor=(xlegcap+1.61,ylegcap-0.12), scatterpoints=1, numpoints=1,
                                 fontsize = textsize-2)
 
         # abc

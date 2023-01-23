@@ -1,7 +1,7 @@
 \documentclass{article}
 
-\usepackage[math,lf,footnotefigures]{MyriadPro}
-\renewcommand{\familydefault}{\sfdefault}
+%\usepackage[math,lf,footnotefigures]{MyriadPro}
+%\renewcommand{\familydefault}{\sfdefault}
 \newcommand*{\mytextstyle}{\sffamily\Large\bfseries\color{black!85}}
 %\usepackage[T1]{fontenc}
 
@@ -81,7 +81,7 @@
 		\node [below=0.03cm of endarrow2.south,align=right,xshift=-0.55cm] (b4b) {recent\\data};
 		\draw [-{Stealth[length=3mm]}] (startarrow2) -- node[above=1mm] {available data} (endarrow2) ;
 		
-		\node [below=0.4cm of b4a.south,align=left,xshift=2.0cm,font=\itshape] (b5) {find calibration setup that reliably\\  leads to most robust model setups\\ in time period following calibration\\ period; potentially try several splits\\  of data};
+		\node [below=0.4cm of b4a.south,align=left,xshift=2.0cm,font=\itshape] (b5) {find calibration setup that reliably\\  leads to most robust model setups\\ in time period following calibra-\\ tion period; potentially try \\ several splits of data};
 		
 		
 		\node [below=0.4cm of b1.south,align=center,xshift=2.1cm,font=\itshape] (bb2) {recommended setup -- part 2:};
@@ -98,7 +98,7 @@
 		\node [below=0.03cm of endarrow3.south,align=right,xshift=-0.55cm] (bb4b) {recent\\data};
 		\draw [-{Stealth[length=3mm]}] (startarrow3) -- node[above=1mm] {available data} (endarrow3) ;
 		
-		\node [below=0.4cm of bb4a.south,align=left,xshift=2.1cm,font=\itshape] (bb5) {train model once more using now all \\data and use this setup to put into \\ operation; use information obtained\\ in step 1 as an estimate of decrease in \\ model skill using future data};
+		\node [below=0.4cm of bb4a.south,align=left,xshift=2.2cm,font=\itshape] (bb5) {train model once more using now all \\data and use this setup to put into \\ operation; use information obtained\\ in step 1 as an estimate of decrease  \\ in model skill using future data};
 				
 	\end{tikzpicture}
 	

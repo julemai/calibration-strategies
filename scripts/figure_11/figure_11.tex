@@ -1,7 +1,7 @@
 \documentclass{article}
 
-\usepackage[math,lf,footnotefigures]{MyriadPro}
-\renewcommand{\familydefault}{\sfdefault}
+%\usepackage[math,lf,footnotefigures]{MyriadPro}
+%\renewcommand{\familydefault}{\sfdefault}
 %\usepackage[T1]{fontenc}
 
 \usepackage{tikz}
@@ -31,7 +31,7 @@
 		\tikzstyle{noblock} = [rectangle, %fill=white!20, 
 		text width=7.0em, rounded corners, minimum height=1em]
 		\tikzstyle{noblockwide} = [rectangle, %fill=white!20, 
-		text width=14.5em, rounded corners, minimum height=1em]
+		text width=16.0em, rounded corners, minimum height=1em]
 		\tikzstyle{abcblock} = [rectangle, fill=white!20, 
 		text width=1em, rounded corners, minimum height=1em]
 		\tikzstyle{line} = [draw, -latex']
@@ -89,13 +89,13 @@
 		
 		% what to do :: A-C
 		\node [noblockwide,align=left,below of=figa,yshift=-1.1cm,xshift=1.4cm] {\textit{parameter might be insensitive/not inferable with given data; consider sensitivity analysis to check}};
-		\node [noblockwide,align=left,below of=figb,yshift=-1.1cm,xshift=1.4cm=] {\textit{parameter range (here lower limit) might be too restricted; consider widening range}};
+		\node [noblockwide,align=left,below of=figb,yshift=-1.1cm,xshift=1.4cm] {\textit{parameter range (here lower limit) might be too restricted; consider widening range}};
 		\node [noblockwide,align=left,below of=figc,yshift=-1.1cm,xshift=1.4cm] {\textit{success}};
 		
 		% what's wrong :: D-F
-		\node [noblock,align=left,left of=figd,xshift=3.8cm] {{\scriptsize \underline{Problem}}\\downward trend of each trial; no plateau};
+		\node [noblock,align=left,left of=figd,xshift=3.8cm,text width=7.5em] {{\scriptsize \underline{Problem}}\\downward trend of each trial; no plateau};
 		\node [noblock,align=left,left of=fige,xshift=3.8cm] {{\scriptsize \underline{Problem}}\\trials converge but not to consistent value};
-		\node [noblock,align=left,left of=figf,xshift=3.8cm] {{\scriptsize \underline{No Problem}}\\all trials plateau; converge to similar values};
+		\node [noblock,align=left,left of=figf,xshift=3.8cm,text width=7.5em] {{\scriptsize \underline{No Problem}}\\all trials plateau; converge to similar values};
 		
 		% what to do :: D-F
 		\node [noblockwide,align=left,below of=figd,yshift=-1.1cm,xshift=1.4cm] {\textit{convergence criterion or budget used likely not appropriate; consider adjusting}};
@@ -105,7 +105,7 @@
 		% what's wrong :: G-I
 		\node [noblock,align=left,left of=figg,xshift=3.8cm] {{\scriptsize \underline{Problem}}\\degenerated front (only visible when magnifying)};
 		\node [noblock,align=left,left of=figh,xshift=3.8cm] {{\scriptsize \underline{Problem}}\\front not consistent with single-objective references};
-		\node [noblock,align=left,left of=figi,xshift=3.8cm] {{\scriptsize \underline{No Problem}}\\front visible and consistent with single-objective references};
+		\node [noblock,align=left,left of=figi,xshift=3.8cm,text width=7.5em] {{\scriptsize \underline{No Problem}}\\front visible and consistent with single-objective references};
 		
 		% what to do :: G-I
 		\node [noblockwide,align=left,below of=figg,yshift=-1.1cm,xshift=1.4cm] {\textit{objectives are not independent; consider using only subset of objective functions}};

@@ -195,7 +195,7 @@ if __name__ == '__main__':
     # fix seed for reproducible results
     np.random.seed(seed=123)
 
-    jsonfile = 'figure_6.json'
+    jsonfile = dir_path+'/figure_6.json'
 
     if not(os.path.exists(jsonfile)):
 
@@ -382,60 +382,26 @@ if __name__ == '__main__':
         from matplotlib.backends.backend_pdf import PdfPages
         # Customize: http://matplotlib.sourceforge.net/users/customizing.html
         mpl.rc('ps', papersize='a4', usedistiller='xpdf') # ps2pdf
-        # mpl.rc('figure', figsize=(8.27,11.69)) # a4 portrait
-        mpl.rc('figure', figsize=(7.48,9.06)) # WRR maximal figure size
+        mpl.rc('figure', figsize=(10.97,11.69)) # a4 portrait
         if usetex:
             mpl.rc('text', usetex=True)
-            if not serif:
-                #   r'\usepackage{helvet}',                             # use Helvetica
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage[math,lf,mathtabular,footnotefigures]{MyriadPro}', # use MyriadPro font
-                    r'\renewcommand{\familydefault}{\sfdefault}',       # normal text font is sans serif
-                    r'\figureversion{lining,tabular}',
-                    r'\usepackage{wasysym}',                            # for permil symbol (load after MyriadPro)
-                    ]
-            else:
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage{wasysym}'                     # for permil symbol
-                    ]
         else:
-            if serif:
-                mpl.rcParams['font.family']     = 'serif'
-                mpl.rcParams['font.sans-serif'] = 'Times'
-            else:
-                mpl.rcParams['font.family']     = 'sans-serif'
-                mpl.rcParams['font.sans-serif'] = 'Arial'       # Arial, Verdana
-    elif (outtype == 'png') or (outtype == 'html') or (outtype == 'd3'):
+            #mpl.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+            mpl.rc('font',**{'family':'serif','serif':['times']})
+        mpl.rc('text.latex') #, unicode=True)
+    elif (outtype == 'png'):
         mpl.use('Agg') # set directly after import matplotlib
         import matplotlib.pyplot as plt
-        # mpl.rc('figure', figsize=(8.27,11.69)) # a4 portrait
-        mpl.rc('figure', figsize=(7.48,9.06)) # WRR maximal figure size
+        mpl.rc('figure', figsize=(10.97,11.69)) # a4 portrait
         if usetex:
             mpl.rc('text', usetex=True)
-            if not serif:
-                #   r'\usepackage{helvet}',                             # use Helvetica
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage[math,lf,mathtabular,footnotefigures]{MyriadPro}', # use MyriadPro font
-                    r'\renewcommand{\familydefault}{\sfdefault}',       # normal text font is sans serif
-                    r'\figureversion{lining,tabular}',
-                    r'\usepackage{wasysym}',                            # for permil symbol (load after MyriadPro)
-                    ]
-            else:
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage{wasysym}'                     # for permil symbol
-                    ]
         else:
-            if serif:
-                mpl.rcParams['font.family']     = 'serif'
-                mpl.rcParams['font.sans-serif'] = 'Times'
-            else:
-                mpl.rcParams['font.family']     = 'sans-serif'
-                mpl.rcParams['font.sans-serif'] = 'Arial'       # Arial, Verdana
+            #mpl.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+            mpl.rc('font',**{'family':'serif','serif':['times']})
+        mpl.rc('text.latex') #, unicode=True)
         mpl.rc('savefig', dpi=dpi, format='png')
     else:
         import matplotlib.pyplot as plt
-        # mpl.rc('figure', figsize=(4./5.*8.27,4./5.*11.69)) # a4 portrait
-        mpl.rc('figure', figsize=(7.48,9.06)) # WRR maximal figure size
     mpl.rc('text.latex') #, unicode=True)
     mpl.rc('font', size=textsize)
     mpl.rc('path', simplify=False) # do not remove
@@ -658,13 +624,13 @@ if __name__ == '__main__':
     if inorm == 'log':
         ticks = [ 10.0**(np.log10(min_sti) + ii*(np.log10(max_sti) - np.log10(min_sti))/len(cc)) for ii in range(len(cc)+1) ]
         cbar = mpl.colorbar.ColorbarBase(csub, norm=norm, cmap=cmap, orientation='vertical', extend='min')
-        cbar.set_ticklabels([ "{:.1e}".format(itick) if (iitick%5 ==0) else "" for iitick,itick in enumerate(ticks) ])  # print only every fifth label
+        cbar.set_ticklabels([ "${:.1e}$".format(itick) if (iitick%5 ==0) else "" for iitick,itick in enumerate(ticks) ])  # print only every fifth label
         cbar.set_label(str2tex("Density [-]",usetex=usetex))
     elif inorm == 'pow':
         ticks = [0]+[ 10**ii for ii in np.arange(0,5,1) ]  # [0, 1, 10, 100, 1000, 10000]
         ticks = [0, 1, 10, 100, 300, 1000, 3000, 10000]
         cbar = mpl.colorbar.ColorbarBase(csub, norm=norm1, ticks=ticks, cmap=cmap, orientation='vertical', extend='max')  #
-        cbar.set_ticklabels([ "{:.0e}".format(itick) for itick in ticks ])
+        cbar.set_ticklabels([ "${:.0e}$".format(itick) for itick in ticks ])
         cbar.set_label(str2tex("Frequency [-]",usetex=usetex))
     else:
         raise ValueError('Norm for colormap not known.')
@@ -935,13 +901,13 @@ if __name__ == '__main__':
     if inorm == 'log':
         ticks = [ 10.0**(np.log10(min_sti) + ii*(np.log10(max_sti) - np.log10(min_sti))/len(cc)) for ii in range(len(cc)+1) ]
         cbar = mpl.colorbar.ColorbarBase(csub, norm=norm, cmap=cmap, orientation='vertical', extend='min')
-        cbar.set_ticklabels([ "{:.1e}".format(itick) if (iitick%5 ==0) else "" for iitick,itick in enumerate(ticks) ])  # print only every fifth label
+        cbar.set_ticklabels([ "${:.1e}$".format(itick) if (iitick%5 ==0) else "" for iitick,itick in enumerate(ticks) ])  # print only every fifth label
         cbar.set_label(str2tex("Density [-]",usetex=usetex))
     elif inorm == 'pow':
         ticks = [0]+[ 10**ii for ii in np.arange(0,5,1) ]  # [0, 1, 10, 100, 1000, 10000]
         ticks = [0, 1, 10, 100, 300, 1000, 3000, 10000]
         cbar = mpl.colorbar.ColorbarBase(csub, norm=norm2, ticks=ticks, cmap=cmap, orientation='vertical', extend='max')  #
-        cbar.set_ticklabels([ "{:.0e}".format(itick) for itick in ticks ])
+        cbar.set_ticklabels([ "${:.0e}$".format(itick) for itick in ticks ])
         cbar.set_label(str2tex("Frequency [-]",usetex=usetex))
     else:
         raise ValueError('Norm for colormap not known.')

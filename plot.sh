@@ -33,12 +33,12 @@ dofig1=0           #   schematic for checklist and cycle of calibration experime
 dofig2=0           #   results of hydrologic calibration experiments w/ and w/o screening of parameters
 dofig3=0           #   sampling of tied parameters and parameters with constraints
 dofig4=0           #   differences when data span orders of magnitude
-dofig5=1           #   results of calibrating with old or new data (cal/val/testing)
+dofig5=0           #   results of calibrating with old or new data (cal/val/testing)
 dofig6=0           #   random sampling vs stratified sampling vs automatic calibration
 dofig7=0           #   results of calibration experiments using different ranges for parameters
 dofig8=0           #   results of hydrologic calibration experiments using different metrics
 dofig9=0           #   results of hydrologic calibration experiments using different calibration algorithms
-dofig10=0          #   results of hydrologic calibration experiments using SO and MO algorithms
+dofig10=1          #   results of hydrologic calibration experiments using SO and MO algorithms
 dofig11=0          #   schematic sub-figures that will get combined to figure 9 via LaTeX
 
 
@@ -49,7 +49,7 @@ verbose=2 # 0: pipe stdout and stderr to /dev/null
 
 # pathes
 inputpath='../data'
-outpath='.'
+outpath='scripts/'
 
 # pdf margins
 pdfmargins=3
@@ -78,8 +78,8 @@ if [[ ${dofig1} -eq 1 ]] ; then
     cd -
 
     # crop
-    pdfcrop figure_1.pdf
-    mv figure_1-crop.pdf ../figures/figure_1.pdf
+    pdfcrop ${outpath}/figure_1.pdf
+    mv ${outpath}/figure_1-crop.pdf figures/figure_1.pdf
 
     # cleanup
     rm ${outpath}/figure_1.pdf
@@ -90,7 +90,7 @@ fi
 if [[ ${dofig2} -eq 1 ]] ; then
     echo ''
     echo 'figure 2 in progress...'
-    python figure_2.py -t pdf -p 'figure_2' ${texit}
+    python ${outpath}/figure_2.py -t pdf -p "${outpath}/figure_2" ${texit}
     pdfcrop --margins ${pdfmargins} ${outpath}/figure_2.pdf ${pipeit}
     mv ${outpath}/figure_2-crop.pdf ${outpath}/../figures/figure_2.pdf
     rm ${outpath}/figure_2.pdf
@@ -99,7 +99,7 @@ fi
 if [[ ${dofig3} -eq 1 ]] ; then
     echo ''
     echo 'figure 3 in progress...'
-    python figure_3.py -t pdf -p 'figure_3' ${texit}
+    python ${outpath}/figure_3.py -t pdf -p "${outpath}/figure_3" ${texit}
     pdfcrop --margins ${pdfmargins} ${outpath}/figure_3.pdf ${pipeit}
     mv ${outpath}/figure_3-crop.pdf ${outpath}/../figures/figure_3.pdf
     rm ${outpath}/figure_3.pdf
@@ -108,20 +108,12 @@ fi
 if [[ ${dofig4} -eq 1 ]] ; then
     echo ''
     echo 'figure 4 in progress...'
-    python figure_4.py -t pdf -p 'figure_4' ${texit}
+    python ${outpath}/figure_4.py -t pdf -p "${outpath}/figure_4" ${texit}
     pdfcrop --margins ${pdfmargins} ${outpath}/figure_4.pdf ${pipeit}
     mv ${outpath}/figure_4-crop.pdf ${outpath}/../figures/figure_4.pdf
     rm ${outpath}/figure_4.pdf
 fi
 
-# if [[ ${dofig5} -eq 1 ]] ; then
-#     echo ''
-#     echo 'figure 5 in progress...'
-#     python figure_5.py -t pdf -p 'figure_5' ${texit}
-#     pdfcrop --margins ${pdfmargins} ${outpath}/figure_5.pdf ${pipeit}
-#     mv ${outpath}/figure_5-crop.pdf ${outpath}/../figures/figure_5.pdf
-#     rm ${outpath}/figure_5.pdf
-# fi
 if [[ ${dofig5} -eq 1 ]] ; then
     echo ''
     echo 'figure 5 in progress...'
@@ -133,8 +125,8 @@ if [[ ${dofig5} -eq 1 ]] ; then
     cd -
 
     # crop
-    pdfcrop figure_5.pdf
-    mv figure_5-crop.pdf ../figures/figure_5.pdf
+    pdfcrop ${outpath}/figure_5.pdf
+    mv ${outpath}/figure_5-crop.pdf figures/figure_5.pdf
 
     # cleanup
     rm ${outpath}/figure_5.pdf
@@ -145,7 +137,7 @@ fi
 if [[ ${dofig6} -eq 1 ]] ; then
     echo ''
     echo 'figure 6 in progress...'
-    python figure_6.py -t pdf -p 'figure_6' ${texit}
+    python ${outpath}/figure_6.py -t pdf -p "${outpath}/figure_6" ${texit}
     pdfcrop --margins ${pdfmargins} ${outpath}/figure_6.pdf ${pipeit}
     mv ${outpath}/figure_6-crop.pdf ${outpath}/../figures/figure_6.pdf
     rm ${outpath}/figure_6.pdf
@@ -154,7 +146,7 @@ fi
 if [[ ${dofig7} -eq 1 ]] ; then
     echo ''
     echo 'figure 7 in progress...'
-    python figure_7.py -t pdf -p 'figure_7' ${texit}
+    python ${outpath}/figure_7.py -t pdf -p "${outpath}/figure_7" ${texit}
     pdfcrop --margins ${pdfmargins} ${outpath}/figure_7.pdf ${pipeit}
     mv ${outpath}/figure_7-crop.pdf ${outpath}/../figures/figure_7.pdf
     rm ${outpath}/figure_7.pdf
@@ -163,7 +155,7 @@ fi
 if [[ ${dofig8} -eq 1 ]] ; then
     echo ''
     echo 'figure 8 in progress...'
-    python figure_8.py -t pdf -p 'figure_8' ${texit}
+    python ${outpath}/figure_8.py -t pdf -p "${outpath}/figure_8" ${texit}
     pdfcrop --margins ${pdfmargins} ${outpath}/figure_8.pdf ${pipeit}
     mv ${outpath}/figure_8-crop.pdf ${outpath}/../figures/figure_8.pdf
     rm ${outpath}/figure_8.pdf
@@ -172,7 +164,7 @@ fi
 if [[ ${dofig9} -eq 1 ]] ; then
     echo ''
     echo 'figure 9 in progress...'
-    python figure_9.py -t pdf -p 'figure_9' ${texit}
+    python ${outpath}/figure_9.py -t pdf -p "${outpath}/figure_9" ${texit}
     pdfcrop --margins ${pdfmargins} ${outpath}/figure_9.pdf ${pipeit}
     mv ${outpath}/figure_9-crop.pdf ${outpath}/../figures/figure_9.pdf
     rm ${outpath}/figure_9.pdf
@@ -181,7 +173,7 @@ fi
 if [[ ${dofig10} -eq 1 ]] ; then
     echo ''
     echo 'figure 10 in progress...'
-    python figure_10.py -t pdf -p 'figure_10' ${texit}
+    python ${outpath}/figure_10.py -t pdf -p "${outpath}/figure_10" ${texit}
     pdfcrop --margins ${pdfmargins} ${outpath}/figure_10.pdf ${pipeit}
     mv ${outpath}/figure_10-crop.pdf ${outpath}/../figures/figure_10.pdf
     rm ${outpath}/figure_10.pdf
@@ -190,13 +182,13 @@ fi
 if [[ ${dofig11} -eq 1 ]] ; then
     echo ''
     echo 'figure 11 in progress...'
-    python figure_11.py -t pdf -p 'figure_11' ${texit}
+    python ${outpath}/figure_11.py -t pdf -p "${outpath}/figure_11" ${texit}
     pdfcrop --margins ${pdfmargins} ${outpath}/figure_11.pdf ${pipeit}
     mv ${outpath}/figure_11-crop.pdf ${outpath}/figure_11/figure_11.pdf
     rm ${outpath}/figure_11.pdf
 
     # split
-    pdfsplit figure_11/figure_11.pdf figure_11/figure_11-
+    pdfsplit ${outpath}/figure_11/figure_11.pdf ${outpath}/figure_11/figure_11-
 
     # make LaTeX schematic
     cd ${outpath}/figure_11/
@@ -205,8 +197,8 @@ if [[ ${dofig11} -eq 1 ]] ; then
     cd -
 
     # crop
-    pdfcrop figure_11.pdf
-    mv figure_11-crop.pdf ../figures/figure_11.pdf
+    pdfcrop ${outpath}/figure_11.pdf
+    mv ${outpath}/figure_11-crop.pdf figures/figure_11.pdf
 
     # cleanup
     rm ${outpath}/figure_11.pdf

@@ -146,7 +146,7 @@ if __name__ == '__main__':
     # fix seed for reproducible results
     np.random.seed(seed=123)
 
-    jsonfile = 'figure_2.json'
+    jsonfile = dir_path+'/figure_2.json'
 
     # -------------------------------------------------------------------------
     # general
@@ -168,6 +168,7 @@ if __name__ == '__main__':
     # names of algorithms
     algorithm_names_str = [ 'DDS', 'SCE', 'PSO' ]  # for plots
     algorithm_names     = [ 'dds', 'sce', 'pso' ]  # in folder names
+
 
 
     if not(os.path.exists(jsonfile)):  #True: #
@@ -320,60 +321,26 @@ if __name__ == '__main__':
         from matplotlib.backends.backend_pdf import PdfPages
         # Customize: http://matplotlib.sourceforge.net/users/customizing.html
         mpl.rc('ps', papersize='a4', usedistiller='xpdf') # ps2pdf
-        # mpl.rc('figure', figsize=(8.27,11.69)) # a4 portrait
-        mpl.rc('figure', figsize=(7.48,9.06)) # WRR maximal figure size
+        mpl.rc('figure', figsize=(10.97,11.69)) # a4 portrait
         if usetex:
             mpl.rc('text', usetex=True)
-            if not serif:
-                #   r'\usepackage{helvet}',                             # use Helvetica
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage[math,lf,mathtabular,footnotefigures]{MyriadPro}', # use MyriadPro font
-                    r'\renewcommand{\familydefault}{\sfdefault}',       # normal text font is sans serif
-                    r'\figureversion{lining,tabular}',
-                    r'\usepackage{wasysym}',                            # for permil symbol (load after MyriadPro)
-                    ]
-            else:
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage{wasysym}'                     # for permil symbol
-                    ]
         else:
-            if serif:
-                mpl.rcParams['font.family']     = 'serif'
-                mpl.rcParams['font.sans-serif'] = 'Times'
-            else:
-                mpl.rcParams['font.family']     = 'sans-serif'
-                mpl.rcParams['font.sans-serif'] = 'Arial'       # Arial, Verdana
-    elif (outtype == 'png') or (outtype == 'html') or (outtype == 'd3'):
+            #mpl.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+            mpl.rc('font',**{'family':'serif','serif':['times']})
+        mpl.rc('text.latex') #, unicode=True)
+    elif (outtype == 'png'):
         mpl.use('Agg') # set directly after import matplotlib
         import matplotlib.pyplot as plt
-        # mpl.rc('figure', figsize=(8.27,11.69)) # a4 portrait
-        mpl.rc('figure', figsize=(7.48,9.06)) # WRR maximal figure size
+        mpl.rc('figure', figsize=(10.97,11.69)) # a4 portrait
         if usetex:
             mpl.rc('text', usetex=True)
-            if not serif:
-                #   r'\usepackage{helvet}',                             # use Helvetica
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage[math,lf,mathtabular,footnotefigures]{MyriadPro}', # use MyriadPro font
-                    r'\renewcommand{\familydefault}{\sfdefault}',       # normal text font is sans serif
-                    r'\figureversion{lining,tabular}',
-                    r'\usepackage{wasysym}',                            # for permil symbol (load after MyriadPro)
-                    ]
-            else:
-                mpl.rcParams['text.latex.preamble'] = [
-                    r'\usepackage{wasysym}'                     # for permil symbol
-                    ]
         else:
-            if serif:
-                mpl.rcParams['font.family']     = 'serif'
-                mpl.rcParams['font.sans-serif'] = 'Times'
-            else:
-                mpl.rcParams['font.family']     = 'sans-serif'
-                mpl.rcParams['font.sans-serif'] = 'Arial'       # Arial, Verdana
+            #mpl.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+            mpl.rc('font',**{'family':'serif','serif':['times']})
+        mpl.rc('text.latex') #, unicode=True)
         mpl.rc('savefig', dpi=dpi, format='png')
     else:
         import matplotlib.pyplot as plt
-        # mpl.rc('figure', figsize=(4./5.*8.27,4./5.*11.69)) # a4 portrait
-        mpl.rc('figure', figsize=(7.48,9.06)) # WRR maximal figure size
     mpl.rc('text.latex') #, unicode=True)
     mpl.rc('font', size=textsize)
     mpl.rc('path', simplify=False) # do not remove
@@ -597,7 +564,7 @@ if __name__ == '__main__':
             if (iplot-1)//ncol == len(example_names)-1:   # last row
                 sub.set_xlabel(str2tex('Iteration', usetex=usetex))
             if iplot%ncol == 1:
-                sub.yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
+                sub.yaxis.set_major_formatter(FormatStrFormatter('$%.1f$'))
                 sub.set_ylabel(str2tex('Objective Function Value\n'+metric_names_str[iiexample], usetex=usetex))
             else:
                 sub.set_yticklabels([])
