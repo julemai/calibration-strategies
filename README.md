@@ -25,7 +25,8 @@ denotes the figure that will be produced using these data.
 
 The codes to produce these figures are in Python. The Python
 environment can be build using
-[requirements.txt](https://github.com/julemai/calibration-strategies/requirements.txt) or setup a Python environment manually using:
+[requirements.txt](https://github.com/julemai/calibration-strategies/requirements.txt) 
+or setup a Python environment manually using:
 
 ```
 pyenv virtualenv 3.8.5 env-3.8.5-calib-pub
@@ -38,12 +39,11 @@ pip install matplotlib
 pip install lhsmdu
 ```
 
-
 ## Generate figures
-The script to produce the figures is `scripts/plot.sh`. Please select the
+The script to produce the figures is `plot.sh`. Please select the
 figure you want to produce in the first lines of that scipts by
 setting `dofigXX=1` to 1. If `dofigXX=0` the figure will not be
-produced.
+produced. The figues will be placed in `figures/` after creation.
 
 ## Citation
 
