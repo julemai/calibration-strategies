@@ -2,6 +2,10 @@
 
 This repository contains the data and scripts associated with the publication on "Ten strategies towards successful calibration of environmental models".
 
+<p align="center">
+   <img alt="The calibration life cycle" src="https://github.com/julemai/nrcan-hfe/blob/main/figures/figure_1.png" width="65%" />
+</p>
+
 ## Requirements
 Figures 1, 5, and 11 are flowcharts and schematic overviews. They are
 derived using LaTeX. It requires LaTeX to be installed including
@@ -25,23 +29,25 @@ denotes the figure that will be produced using these data.
 
 The codes to produce these figures are in Python. The Python
 environment can be build using
-[requirements.txt](https://github.com/julemai/calibration-strategies/requirements.txt) or setup a Python environment manually using:
+[requirements.txt](https://github.com/julemai/calibration-strategies/requirements.txt) 
+or setup a Python environment manually using:
 
 ```
+pyenv virtualenv 3.8.5 env-3.8.5-calib-pub
+pyenv activate env-3.8.5-calib-pub
+
 pip install argparse
 pip install numpy
 pip install scipy
 pip install matplotlib
 pip install lhsmdu
-
 ```
 
-
 ## Generate figures
-The script to produce the figures is `scripts/plot.sh`. Please select the
+The script to produce the figures is `plot.sh`. Please select the
 figure you want to produce in the first lines of that scipts by
 setting `dofigXX=1` to 1. If `dofigXX=0` the figure will not be
-produced.
+produced. The figues will be placed in `figures/` after creation.
 
 ## Citation
 
