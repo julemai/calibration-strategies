@@ -1,9 +1,9 @@
 # Ten strategies towards successful calibration of environmental models
 
-This repository contains the data and scripts associated with the publication on "Ten strategies towards successful calibration of environmental models".
+This repository contains the data and scripts associated with <i>"Ten strategies towards successful calibration of environmental models"</i> by Mai (2023).
 
 <p align="center">
-   <img alt="The calibration life cycle" src="https://github.com/julemai/nrcan-hfe/blob/main/figures/figure_1.png" width="65%" />
+   <img alt="The calibration life cycle" src="https://github.com/julemai/calibration-strategies/blob/main/figures/figure_1.png" width="65%" />
 </p>
 
 ## Requirements
