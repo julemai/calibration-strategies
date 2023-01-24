@@ -52,14 +52,14 @@ produced. The figues will be placed in `figures/` after creation.
 ## Citation
 
 ### Journal Publication
-Mai, J. (2023).<br>
+Mai, J (2023)<br>
 Ten strategies towards successful calibration of environmental models. <br>
 *Journal of Hydrology*, XX(XX), XX-XX.<br>
 https://doi.org/XX/XX
 
 
 ### Code and Data Publication
-Mai, J (2023).<br>
+Mai, J (2023)<br>
 Ten strategies towards successful calibration of environmental models. <br>
 *Zenodo*<br>
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7563321.svg)](https://doi.org/10.5281/zenodo.7563321)
