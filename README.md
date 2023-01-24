@@ -15,9 +15,9 @@ Figures 2-4, and 6-10 are produced through calibration experiments. The
 setups and results used for the publication are provided as
 `scripts/example_XX.zip`. Please unzip them and run the experiments again in
 case you want to test. Be aware that some examples require an
-excecutable of the hydrologic modeling framework
+executable of the hydrologic modeling framework
 [Raven](http://raven.uwaterloo.ca/) to be available. Please download a
-Raven exectuable from [here](http://raven.uwaterloo.ca/Downloads.html)
+Raven executable from [here](http://raven.uwaterloo.ca/Downloads.html)
 or compile the code yourself. Then replace all Raven executables in
 the example folders with your executable.
 
