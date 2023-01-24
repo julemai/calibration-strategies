@@ -62,4 +62,4 @@ https://doi.org/XX/XX
 Mai, J (2023).<br>
 Ten strategies towards successful calibration of environmental models. <br>
 *Zenodo*<br>
-[![DOI](https://zenodo.org/badge/XX.svg)](https://zenodo.org/badge/latestdoi/XX)
+[![DOI](https://zenodo.org/badge/592491809.svg)](https://zenodo.org/badge/latestdoi/592491809)
