@@ -45,7 +45,7 @@ pip install lhsmdu
 
 ## Generate figures
 The script to produce the figures is `plot.sh`. Please select the
-figure you want to produce in the first lines of that scipts by
+figure you want to produce in the first lines of that scripts by
 setting `dofigXX=1` to 1. If `dofigXX=0` the figure will not be
 produced. The figues will be placed in `figures/` after creation.
 
@@ -62,4 +62,4 @@ https://doi.org/XX/XX
 Mai, J (2023).<br>
 Ten strategies towards successful calibration of environmental models. <br>
 *Zenodo*<br>
-[![DOI](https://zenodo.org/badge/592491809.svg)](https://zenodo.org/badge/latestdoi/592491809)
+[![DOI](https://zenodo.org/badge/7563322.svg)](https://zenodo.org/badge/latestdoi/7563322)
