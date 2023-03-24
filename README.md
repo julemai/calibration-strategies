@@ -54,7 +54,7 @@ produced. The figues will be placed in `figures/` after creation.
 ### Journal Publication
 Mai, J (2023)<br>
 Ten strategies towards successful calibration of environmental models. <br>
-*Journal of Hydrology*, XX(XX), XX-XX.<br>
+*Journal of Hydrology*, 620(A), 129414.<br>
 https://doi.org/XX/XX
 
 
