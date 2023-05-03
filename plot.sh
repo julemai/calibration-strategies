@@ -38,9 +38,10 @@ dofig6=0           #   random sampling vs stratified sampling vs automatic calib
 dofig7=0           #   results of calibration experiments using different ranges for parameters
 dofig8=0           #   results of hydrologic calibration experiments using different metrics
 dofig9=0           #   results of hydrologic calibration experiments using different calibration algorithms
-dofig10=1          #   results of hydrologic calibration experiments using SO and MO algorithms
+dofig10=0          #   results of hydrologic calibration experiments using SO and MO algorithms
 dofig11=0          #   schematic sub-figures that will get combined to figure 9 via LaTeX
 
+dofig8sub=1           #   results of hydrologic calibration experiments using different metrics
 
 
 verbose=2 # 0: pipe stdout and stderr to /dev/null
@@ -159,6 +160,15 @@ if [[ ${dofig8} -eq 1 ]] ; then
     pdfcrop --margins ${pdfmargins} ${outpath}/figure_8.pdf ${pipeit}
     mv ${outpath}/figure_8-crop.pdf ${outpath}/../figures/figure_8.pdf
     rm ${outpath}/figure_8.pdf
+fi
+
+if [[ ${dofig8sub} -eq 1 ]] ; then
+    echo ''
+    echo 'figure 8 in progress...'
+    python ${outpath}/figure_8_subset.py -t pdf -p "${outpath}/figure_8_subset" ${texit}
+    pdfcrop --margins ${pdfmargins} ${outpath}/figure_8_subset.pdf ${pipeit}
+    mv ${outpath}/figure_8_subset-crop.pdf ${outpath}/../figures/figure_8_subset.pdf
+    rm ${outpath}/figure_8_subset.pdf
 fi
 
 if [[ ${dofig9} -eq 1 ]] ; then
